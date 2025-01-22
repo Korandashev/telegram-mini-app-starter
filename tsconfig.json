@@ -16,7 +16,7 @@
       "react-dom": ["./node_modules/preact/compat"],
       "@app/*": ["src/app/*"]
     },
-    "types": ["node", "webpack-env"]
+    "types": ["node", "webpack-env", "@types/telegram-web-app"]
   },
   "include": ["src/**/*"]
 }
