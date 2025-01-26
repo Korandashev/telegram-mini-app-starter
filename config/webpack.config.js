@@ -45,8 +45,8 @@ export default {
         include: [basePath],
       },
       {
-        test: /\.module.css$/,
-        include: /src/,
+        test: /\.css$/i,
+        include: /\.module\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -63,8 +63,8 @@ export default {
         ],
       },
       {
-        test: /\.css$/,
-        exclude: /src/,
+        test: /\.css$/i,
+        exclude: /\.module\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],

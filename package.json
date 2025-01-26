@@ -10,6 +10,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@telegram-apps/telegram-ui": "^2.1.8",
     "preact": "^10.6.6"
   },
   "devDependencies": {
@@ -31,7 +32,6 @@
     "mini-css-extract-plugin": "^2.9.2",
     "postcss": "^8.5.1",
     "postcss-loader": "^8.1.1",
-    "style-loader": "^4.0.0",
     "typescript": "^5.7.2",
     "typescript-plugin-css-modules": "^5.1.0",
     "webpack": "5.90.1",

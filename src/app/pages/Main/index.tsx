@@ -1,4 +1,4 @@
-import * as styles from "./Main.module.css";
+import { Cell, List, Section } from "@telegram-apps/telegram-ui";
 
 export default () => {
   const handleClose = () => {
@@ -6,13 +6,13 @@ export default () => {
   };
 
   return (
-    <div className={styles.page}>
-      Mini app starter
-      <div style="margin-top: 20px">
-        <button type="button" onClick={handleClose}>
-          Close
-        </button>
-      </div>
-    </div>
+    <List>
+      <Section header="Header for the section">
+        <Cell>Chat Settings</Cell>
+        <Cell>Data and Storage</Cell>
+        <Cell>Devices</Cell>
+        <Cell onClick={handleClose}>Close app</Cell>
+      </Section>
+    </List>
   );
 };
