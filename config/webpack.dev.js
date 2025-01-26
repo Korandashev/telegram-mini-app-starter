@@ -12,5 +12,6 @@ export default merge(config, {
     static: {
       directory: path.join(basePath, "build"),
     },
+    allowedHosts: ["localhost", process.env.FRONTEND_HOST].filter(Boolean),
   },
 });

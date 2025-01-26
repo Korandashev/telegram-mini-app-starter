@@ -1,9 +1,10 @@
 import path from "path";
 import webpack from "webpack";
 import HtmlPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const basePath = path.join(path.resolve(), "src");
-const env = process.env.NODE_ENV || "development";
+const isDevelopment = (process.env.NODE_ENV || "development") === "development";
 
 export default {
   entry: {
@@ -12,14 +13,15 @@ export default {
 
   output: {
     path: path.join(basePath, "..", "build"),
-    publicPath: env === "development" ? "/" : "",
-    filename: "[name].[contenthash].js",
+    publicPath: isDevelopment ? "/" : "",
+    filename: "[name].js",
   },
 
   plugins: [
     new webpack.ProvidePlugin({
       h: ["preact", "h"],
     }),
+    new MiniCssExtractPlugin(),
     new HtmlPlugin({
       template: path.join(basePath, "index.html"),
     }),
@@ -41,6 +43,29 @@ export default {
         test: /\.[j|t]sx?$/,
         loader: "babel-loader",
         include: [basePath],
+      },
+      {
+        test: /\.module.css$/,
+        include: /src/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              esModule: true,
+              modules: {
+                namedExport: true,
+                localIdentName: "[hash:base64:4]",
+              },
+            },
+          },
+          "postcss-loader",
+        ],
+      },
+      {
+        test: /\.css$/,
+        exclude: /src/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
